@@ -1,0 +1,19 @@
+version: "3.9"
+
+name: "pipeline"
+
+services:
+  dev:
+    extends:
+        file: base.yml
+        service: reports
+    build:
+      target:
+        dev
+    volumes:
+      - ..:/app
+
+  dev-db:
+    extends:
+        file: base.yml
+        service: pgsql

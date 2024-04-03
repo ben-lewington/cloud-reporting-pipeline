@@ -1,0 +1,13 @@
+version: "3.9"
+
+name: "pipeline"
+
+services:
+  reports:
+    build:
+      context: ..
+      dockerfile: ./docker/reports.dockerfile
+
+  pgsql:
+    build:
+      context: pgsql
