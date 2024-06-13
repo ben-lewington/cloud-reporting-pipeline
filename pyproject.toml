@@ -1,0 +1,27 @@
+[project]
+name = "interview"
+version = "0.0.1"
+authors = [
+  { name="Benjamin Lewington", email="benjamin.lewington1991@gmail.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = "==3.12.*"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Data Analytics",
+]
+dependencies = [
+    "polars",
+    "sqlalchemy",
+    "psycopg2-binary",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["lib"]

@@ -1,0 +1,19 @@
+name: "pipeline"
+version: "3.9"
+
+services:
+  python-uv:
+    build:
+      context: ..
+      dockerfile: ./container/Containerfile
+      target: builder
+
+  postgres:
+    build:
+      context: database
+      dockerfile: Containerfile
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: Password1!
+      POSTGRES_DB: database

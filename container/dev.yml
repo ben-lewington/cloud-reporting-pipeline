@@ -1,0 +1,42 @@
+name: "pipeline"
+version: "3.9"
+
+services:
+  reports:
+    build:
+      context: ..
+      dockerfile: ./container/Containerfile
+      target: build-dev
+    env_file:
+        - .env
+    volumes:
+      - ..:/base
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    build:
+      context: database
+      dockerfile: Containerfile
+    restart: always
+    env_file:
+      - database/.env
+    ports:
+      - 5432:8432
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  migrator:
+    build:
+      dockerfile: Containerfile
+      target: build-migrations
+    env_file:
+      - .env
+      - migrator/.env
+    depends_on:
+      db:
+        condition: service_healthy

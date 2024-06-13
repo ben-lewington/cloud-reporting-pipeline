@@ -1,0 +1,27 @@
+[project]
+name = "migrations"
+version = "0.0.1"
+authors = [
+  { name="Benjamin Lewington", email="benjamin.lewington1991@gmail.com" },
+]
+description = "make the database correct"
+readme = "README.md"
+requires-python = "==3.12.*"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Database",
+]
+dependencies = [
+    "sqlalchemy",
+    "psycopg2-binary",
+    "environment",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["lib"]
